@@ -105,14 +105,18 @@ def render_grouped_table(rows):
 
     for topic_key, (topic_name, total_count) in TOPIC_MAP.items():
         solved_count = len(grouped.get(topic_key, []))
+        if solved_count == 0:
+            continue  # skip empty topics
+
         out.append(f"## {topic_name} ({solved_count}/{total_count})")
         out.append("| # | Problem | Difficulty | Language | Date | File |")
         out.append("|---|---------|------------|----------|------|------|")
-        for r in grouped.get(topic_key, []):
+        for r in grouped[topic_key]:
             diff_disp = DIFF_EMOJI.get(r["diff"], r["diff"])
             link = f"[link]({r['path'].relative_to(ROOT).as_posix()})"
             out.append(f"| {r['pid_str']} | {r['pname']} | {diff_disp} | {r['lang']} | {r['date']} | {link} |")
         out.append("")  # blank line after each table
+
 
     return "\n".join(out)
 
