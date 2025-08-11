@@ -5,11 +5,6 @@ Tracking my **NeetCode 150** journey with clean solutions, notes, and an auto-ge
 ## Progress
 ---
 
-| # | Problem | Topic | Difficulty | Language | Date | File |
-|---|---------|-------|------------|----------|------|------|
-| 001 | Two Sum | Arrays & Hashing | Easy | Python | 2025-08-11 | [link](01-arrays_hashing/LC001-two-sum.py) |
-<!-- AUTOGEN:END -->
-
 <!-- AUTOGEN:START -->
 
 | # | Problem | Topic | Difficulty | Language | Date | File |
