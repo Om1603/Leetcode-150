@@ -1,6 +1,6 @@
 """
 LeetCode: Contains Duplicates
-ID: <217> | Topic: <Arrays/Hashing> | Difficulty: <Easy>
+ID: 217 | Topic: Arrays & Hashing | Difficulty: Easy
 
 Approach:
 -
