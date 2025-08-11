@@ -1,31 +1,37 @@
 import os, re, pathlib, datetime, subprocess
+from collections import defaultdict
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 
 TOPIC_MAP = {
-    "01-arrays_hashing": "Arrays & Hashing",
-    "02-two_pointers": "Two Pointers",
-    "03-sliding_window": "Sliding Window",
-    "04-stack": "Stack",
-    "05-binary_search": "Binary Search",
-    "06-linked_list": "Linked List",
-    "07-trees": "Trees",
-    "08-heap": "Heap / Priority Queue",
-    "09-backtracking": "Backtracking",
-    "10-tries": "Tries",
-    "11-graphs": "Graphs",
-    "12-advanced-graphs": "Advanced Graphs",
-    "13-dp_1d": "Dynamic Programming 1D",
-    "14-dp_2d": "Dynamic Programming 2D",
-    "15-greedy": "Greedy",
-    "16-intervals": "Intervals",
-    "17-math_geometry": "Math & Geometry",
-    "18-bit_manipulation": "Bit Manipulation",
+    "01-arrays_hashing": ("📦 Arrays & Hashing", 9),
+    "02-two_pointers": ("🔄 Two Pointers", 8),
+    "03-sliding_window": ("🪟 Sliding Window", 6),
+    "04-stack": ("📚 Stack", 6),
+    "05-binary_search": ("🔍 Binary Search", 7),
+    "06-linked_list": ("🔗 Linked List", 7),
+    "07-trees": ("🌳 Trees", 9),
+    "08-heap": ("⏫ Heap / Priority Queue", 4),
+    "09-backtracking": ("🔙 Backtracking", 5),
+    "10-tries": ("📖 Tries", 3),
+    "11-graphs": ("🗺️ Graphs", 8),
+    "12-advanced-graphs": ("⚡ Advanced Graphs", 4),
+    "13-dp_1d": ("🧮 DP 1D", 8),
+    "14-dp_2d": ("📊 DP 2D", 7),
+    "15-greedy": ("💡 Greedy", 5),
+    "16-intervals": ("⏱️ Intervals", 4),
+    "17-math_geometry": ("📐 Math & Geometry", 6),
+    "18-bit_manipulation": ("💾 Bit Manipulation", 4),
 }
 
-# --- parsing helpers ---
 DIFF_RE = re.compile(r"Difficulty:\s*(Easy|Medium|Hard)", re.I)
+
+DIFF_EMOJI = {
+    "Easy": "🟢 Easy",
+    "Medium": "🟡 Medium",
+    "Hard": "🔴 Hard",
+}
 
 def detect_language(p: pathlib.Path) -> str:
     return {
@@ -51,71 +57,80 @@ def last_git_date(p: pathlib.Path) -> str:
             ["git", "-C", str(ROOT), "log", "-1", "--format=%cs", "--", str(p)],
             stderr=subprocess.DEVNULL,
         ).decode().strip()
-        if out: return out   # YYYY-MM-DD
+        if out: return out
     except Exception:
         pass
     return datetime.date.fromtimestamp(p.stat().st_mtime).isoformat()
 
 def build_rows():
     rows = []
-    topic_index = {k: i for i, k in enumerate(TOPIC_MAP.keys())}
-    for td in TOPIC_MAP:
+    for td, (topic_name, total_count) in TOPIC_MAP.items():
         tdir = ROOT / td
         if not tdir.exists(): continue
         for p in sorted(tdir.iterdir()):
             if not (p.is_file() and p.name.startswith("LC")): continue
             pid, pname = parse_id_name(p.stem)
             if not pid: continue
-            rows.append((
-                topic_index[td],
-                int(pid),
-                pid,
-                pname,
-                TOPIC_MAP[td],
-                extract_difficulty(p),
-                detect_language(p),
-                p,
-                last_git_date(p),
-            ))
-    rows.sort(key=lambda x: (x[0], x[1]))  # by topic order, then problem id
-    return rows
+            diff = extract_difficulty(p)
+            rows.append({
+                "topic_key": td,
+                "pid": int(pid),
+                "pid_str": pid,
+                "pname": pname,
+                "topic_name": topic_name,
+                "total_count": total_count,
+                "diff": diff,
+                "lang": detect_language(p),
+                "path": p,
+                "date": last_git_date(p),
+            })
+    return sorted(rows, key=lambda r: (list(TOPIC_MAP).index(r["topic_key"]), r["pid"]))
 
-def render_table(rows):
-    header = (
-        "\n\n| # | Problem | Topic | Difficulty | Language | Date | File |\n"
-        "|---|---------|-------|------------|----------|------|------|\n"
-    )
-    lines = []
-    for _, _, pid, pname, topic, diff, lang, path, date in rows:
-        link = f"[link]({path.relative_to(ROOT).as_posix()})"
-        lines.append(f"| {pid} | {pname} | {topic} | {diff} | {lang} | {date} | {link} |")
-    return header + "\n".join(lines) + "\n"
+def render_grouped_table(rows):
+    total_solved = len(rows)
+    total_target = sum(v[1] for v in TOPIC_MAP.values())
+    progress_bar_len = 20
+    filled_len = int(progress_bar_len * total_solved / total_target)
+    progress_bar = "█" * filled_len + "░" * (progress_bar_len - filled_len)
+
+    out = []
+    out.append(f"**Total Solved:** {total_solved} / {total_target} ✅")
+    out.append(f"**Progress:** {progress_bar} {int((total_solved/total_target)*100)}%")
+    out.append("\n---\n")
+
+    # group by topic
+    grouped = defaultdict(list)
+    for r in rows:
+        grouped[r["topic_key"]].append(r)
+
+    for topic_key, (topic_name, total_count) in TOPIC_MAP.items():
+        solved_count = len(grouped.get(topic_key, []))
+        out.append(f"## {topic_name} ({solved_count}/{total_count})")
+        out.append("| # | Problem | Difficulty | Language | Date | File |")
+        out.append("|---|---------|------------|----------|------|------|")
+        for r in grouped.get(topic_key, []):
+            diff_disp = DIFF_EMOJI.get(r["diff"], r["diff"])
+            link = f"[link]({r['path'].relative_to(ROOT).as_posix()})"
+            out.append(f"| {r['pid_str']} | {r['pname']} | {diff_disp} | {r['lang']} | {r['date']} | {link} |")
+        out.append("")  # blank line after each table
+
+    return "\n".join(out)
 
 def rewrite_readme(rows):
-    table = render_table(rows)
+    table = render_grouped_table(rows)
     if not README.exists():
         README.write_text("# NeetCode 150 — Daily Solutions\n\n", encoding="utf-8")
 
     content = README.read_text(encoding="utf-8")
-
-    # --- remove any old legacy table block if present ---
-    OLD_HDR = "Auto-generates the table below from your files:"
-    content = re.sub(
-        rf"{re.escape(OLD_HDR)}[\s\S]*?$",
-        "",
-        content,
-        flags=re.M,
-    )
-
     start_tag = "<!-- AUTOGEN:START -->"
     end_tag   = "<!-- AUTOGEN:END -->"
 
     if start_tag in content and end_tag in content:
         before, rest = content.split(start_tag, 1)
         _, after = rest.split(end_tag, 1)
-        new_content = before + start_tag + table + end_tag + after
+        new_content = before + start_tag + "\n" + table + "\n" + end_tag + after
     else:
-        new_content = content.rstrip() + "\n\n" + start_tag + table + end_tag + "\n"
+        new_content = content.rstrip() + "\n\n" + start_tag + "\n" + table + "\n" + end_tag + "\n"
 
     README.write_text(new_content, encoding="utf-8")
 
