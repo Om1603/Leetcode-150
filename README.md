@@ -1,6 +1,6 @@
 # Leetcode 150 — Daily Solutions
 
-Tracking my **NeetCode 150** journey with clean solutions, notes, and an auto-generated progress table.
+Tracking my **Leetcode 150** journey with clean solutions, notes, and an auto-generated progress table.
 
 ## Progress
 ---
@@ -9,5 +9,5 @@ Tracking my **NeetCode 150** journey with clean solutions, notes, and an auto-ge
 
 | # | Problem | Topic | Difficulty | Language | Date | File |
 |---|---------|-------|------------|----------|------|------|
-
+| 217 | Contains Duplicates | Arrays & Hashing |  | Python | 2025-08-11 | [link](01-arrays_hashing/LC217-contains-duplicates.py) |
 <!-- AUTOGEN:END -->
