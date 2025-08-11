@@ -28,6 +28,6 @@ Tracking my **Leetcode 150** journey with clean solutions, notes, and an auto-ge
 | # | Problem | Difficulty | Language | Date | File |
 |---|---------|------------|----------|------|------|
 | 125 | Valid Palindrome | 🟢 Easy | Python | 2025-08-11 | [link](02-two_pointers/LC125-valid-palindrome.py) |
-| 167 | Two Sum 2 | 🟢 Easy | Python | 2025-08-11 | [link](02-two_pointers/LC167-two-sum-2.py) |
+| 167 | Two Sum 2 | 🟡 Medium | Python | 2025-08-11 | [link](02-two_pointers/LC167-two-sum-2.py) |
 
 <!-- AUTOGEN:END -->

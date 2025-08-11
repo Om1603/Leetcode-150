@@ -1,6 +1,6 @@
 """
 LeetCode: Two Sum 2
-ID: 167 | Topic: Two Pointers | Difficulty: Easy
+ID: 167 | Topic: Two Pointers | Difficulty: Medium
 
 Approach:
 1. Initiate 2 pointers L & R
