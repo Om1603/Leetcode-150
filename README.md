@@ -16,7 +16,7 @@ Tracking my **Leetcode 150** journey with clean solutions, notes, and an auto-ge
 |---|---------|------------|----------|------|------|
 | 001 | Two Sum | 🟢 Easy | Python | 2025-08-11 | [link](01-arrays_hashing/LC001-two-sum.py) |
 | 036 | Valid Sudoku | 🟡 Medium | Python | 2025-08-11 | [link](01-arrays_hashing/LC036-valid-sudoku.py) |
-| 049 | Group Anagrams | 🟡 Medium |  | 2025-08-11 | [link](01-arrays_hashing/LC049-group-anagrams) |
+| 049 | Group Anagrams | 🟡 Medium | Python | 2025-08-11 | [link](01-arrays_hashing/LC049-group-anagrams.py) |
 | 128 | Longest Consecutive Sequence | 🟡 Medium | Python | 2025-08-11 | [link](01-arrays_hashing/LC128-Longest-Consecutive-Sequence.py) |
 | 217 | Contains Duplicates | 🟢 Easy | Python | 2025-08-11 | [link](01-arrays_hashing/LC217-contains-duplicates.py) |
 | 238 | Product Of Array Except Self | 🟡 Medium | Python | 2025-08-11 | [link](01-arrays_hashing/LC238-Product-Of-Array-Except-Self.py) |
