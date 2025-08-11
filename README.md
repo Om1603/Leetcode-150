@@ -46,3 +46,4 @@ Auto-generates the table below from your files:
 
 | # | Problem | Topic | Difficulty | Language | File |
 |---|---------|-------|------------|----------|------|
+| 001 | Two Sum | Arrays & Hashing |  | Python | [link](/home/runner/work/Leetcode-150/Leetcode-150/01-arrays_hashing/LC001-two-sum.py) |
