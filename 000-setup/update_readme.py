@@ -80,7 +80,7 @@ def rewrite_readme(rows):
 
     table_rows = []
     for _, pid, pname, topic, diff, lang, path in rows:
-        link = f"[link]({path.as_posix()})"
+        link = f"[link]({path.relative_to(ROOT).as_posix()})"
         table_rows.append(f"| {pid} | {pname} | {topic} | {diff} | {lang} | {link} |")
 
     new_content = head + sep + table_header + "\n".join(table_rows) + "\n"

@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
@@ -29,12 +29,4 @@ jobs:
       - name: Rebuild README
         run: python 000-setup/update_readme.py
 
-      - name: Commit README if changed
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git config user.name "readme-bot"
-            git config user.email "readme-bot@example.com"
-            git add README.md
-            git commit -m "chore: auto-update README table"
-            git push
-          fi
+      

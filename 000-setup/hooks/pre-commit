@@ -1,0 +1,4 @@
+#!/bin/sh
+python 000-setup/update_readme.py
+git add README.md
+echo "✅ README refreshed"
