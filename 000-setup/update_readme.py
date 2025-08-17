@@ -106,9 +106,9 @@ def render_grouped_table(rows):
     for topic_key, (topic_name, total_count) in TOPIC_MAP.items():
         solved = grouped.get(topic_key, [])
         if not solved:
-            continue
-        
-        # sort this topic’s rows by date (newest first)
+            continue  
+
+        # 🔥 sort rows by date (latest first)
         solved.sort(key=lambda r: r["date"], reverse=True)
 
         out.append(f"## {topic_name} ({len(solved)}/{total_count})")
@@ -117,14 +117,12 @@ def render_grouped_table(rows):
         for r in solved:
             diff_disp = DIFF_EMOJI.get(r["diff"], r["diff"])
             link = f"[link]({r['path'].relative_to(ROOT).as_posix()})"
-            out.append(
-                f"| {r['pid_str']} | {r['pname']} | {diff_disp} | {r['lang']} | {r['date']} | {link} |"
-            )
-        out.append("")
-  # blank line after each table
-
+            out.append(f"| {r['pid_str']} | {r['pname']} | {diff_disp} | {r['lang']} | {r['date']} | {link} |")
+        out.append("")  # blank line after each table
 
     return "\n".join(out)
+
+
 
 def rewrite_readme(rows):
     table = render_grouped_table(rows)
