@@ -27,11 +27,11 @@ Tracking my **Leetcode 150** journey with clean solutions, notes, and an auto-ge
 ## 🔄 Two Pointers (5/5)
 | # | Problem | Difficulty | Language | Date | File |
 |---|---------|------------|----------|------|------|
-| 042 | Trapping Rain Water | 🔴 Hard | Python | 2025-08-13 | [link](02-two_pointers/LC042-trapping-rain-water.py) |
-| 011 | Container With Most Water | 🟡 Medium | Python | 2025-08-12 | [link](02-two_pointers/LC011-Container-with-most-water.py) |
 | 015 | Three Sum | 🟡 Medium | Python | 2025-08-11 | [link](02-two_pointers/LC015-three-sum.py) |
 | 125 | Valid Palindrome | 🟢 Easy | Python | 2025-08-11 | [link](02-two_pointers/LC125-valid-palindrome.py) |
 | 167 | Two Sum 2 | 🟡 Medium | Python | 2025-08-11 | [link](02-two_pointers/LC167-two-sum-2.py) |
+| 011 | Container With Most Water | 🟡 Medium | Python | 2025-08-12 | [link](02-two_pointers/LC011-Container-with-most-water.py) |
+| 042 | Trapping Rain Water | 🔴 Hard | Python | 2025-08-13 | [link](02-two_pointers/LC042-trapping-rain-water.py) |
 
 ## 🪟 Sliding Window (2/6)
 | # | Problem | Difficulty | Language | Date | File |

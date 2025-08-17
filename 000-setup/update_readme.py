@@ -109,7 +109,7 @@ def render_grouped_table(rows):
             continue  
 
         # 🔥 sort rows by date (latest first)
-        solved.sort(key=lambda r: r["date"], reverse=True)
+        solved.sort(key=lambda r: r["date"], reverse=False)
 
         out.append(f"## {topic_name} ({len(solved)}/{total_count})")
         out.append("| # | Problem | Difficulty | Language | Date | File |")
