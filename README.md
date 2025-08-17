@@ -27,9 +27,9 @@ Tracking my **Leetcode 150** journey with clean solutions, notes, and an auto-ge
 ## 🔄 Two Pointers (5/5)
 | # | Problem | Difficulty | Language | Date | File |
 |---|---------|------------|----------|------|------|
+| 042 | Trapping Rain Water | 🔴 Hard | Python | 2025-08-13 | [link](02-two_pointers/LC042-trapping-rain-water.py) |
 | 011 | Container With Most Water | 🟡 Medium | Python | 2025-08-12 | [link](02-two_pointers/LC011-Container-with-most-water.py) |
 | 015 | Three Sum | 🟡 Medium | Python | 2025-08-11 | [link](02-two_pointers/LC015-three-sum.py) |
-| 042 | Trapping Rain Water | 🔴 Hard | Python | 2025-08-13 | [link](02-two_pointers/LC042-trapping-rain-water.py) |
 | 125 | Valid Palindrome | 🟢 Easy | Python | 2025-08-11 | [link](02-two_pointers/LC125-valid-palindrome.py) |
 | 167 | Two Sum 2 | 🟡 Medium | Python | 2025-08-11 | [link](02-two_pointers/LC167-two-sum-2.py) |
 
@@ -37,6 +37,6 @@ Tracking my **Leetcode 150** journey with clean solutions, notes, and an auto-ge
 | # | Problem | Difficulty | Language | Date | File |
 |---|---------|------------|----------|------|------|
 | 003 | Longest Substring Without Repeating Characters | 🟡 Medium | Python | 2025-08-17 | [link](03-sliding_window/LC003-Longest-substring-without-repeating-characters.py) |
-| 121 | Best Time To Buy And Sell Stock | 🟢 Easy | Python | 2025-08-14 | [link](03-sliding_window/LC121-best-time-to-buy-and-sell-stock.py) |
+| 121 | Best Time To Buy And Sell Stock | 🟢 Easy | Python | 2025-08-17 | [link](03-sliding_window/LC121-best-time-to-buy-and-sell-stock.py) |
 
 <!-- AUTOGEN:END -->
